@@ -5,9 +5,12 @@ var gutil = require('gulp-util');
 // [PLUGINS]
 var browserify = require('browserify');
 var source = require('vinyl-source-stream');
+var buffer = require('vinyl-buffer');
 var babelify = require('babelify');
 var watchify = require('watchify');
 var browserSync = require('browser-sync');
+var uglify = require('gulp-uglify');
+var gulpif = require('gulp-if');
 
 // [CONFIG]
 var config = require('../config.js').scripts;
@@ -38,6 +41,8 @@ function scripts(watch) {
         gutil.log(err.toString());
       })
       .pipe(source(config.dest.src))
+      .pipe(gulpif(!watch, buffer()))
+      .pipe(gulpif(!watch, uglify()))
       .pipe(gulp.dest(config.dest.path))
       .pipe(browserSync.reload({stream: true}));
   };
