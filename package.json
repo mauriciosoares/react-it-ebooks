@@ -1,0 +1,38 @@
+{
+  "name": "react-it-ebooks",
+  "version": "1.0.0",
+  "description": "",
+  "main": "gulpfile.js",
+  "dependencies": {
+    "babelify": "^6.2.0",
+    "gulp": "^3.9.0",
+    "react": "^0.13.3",
+    "vinyl-source-stream": "^1.1.0",
+    "browserify": "^11.0.1",
+    "require-dir": "^0.3.0",
+    "watchify": "^3.3.1"
+  },
+  "devDependencies": {
+    "babelify": "^6.2.0",
+    "browserify": "^11.0.1",
+    "gulp": "^3.9.0",
+    "gulp-util": "^3.0.6",
+    "react": "^0.13.3",
+    "require-dir": "^0.3.0",
+    "vinyl-source-stream": "^1.1.0",
+    "watchify": "^3.3.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mauriciosoares/react-it-ebooks.git"
+  },
+  "author": "Mauricio Soares",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mauriciosoares/react-it-ebooks/issues"
+  },
+  "homepage": "https://github.com/mauriciosoares/react-it-ebooks#readme"
+}
