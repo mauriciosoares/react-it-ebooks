@@ -27,20 +27,17 @@ function scripts(watch) {
 
 
   rebundle = function() {
-    var updateStart = Date.now();
-
     bundler.bundle()
       .on('error', function(err) {
         gutil.log(err.toString());
       })
       .pipe(source(config.dest.src))
       .pipe(gulp.dest(config.dest.path));
-
-    gutil.log('Code updated in', gutil.colors.cyan((Date.now() - updateStart) + 'ms'));
-
   };
 
-  bundler.on('update', rebundle);
+  bundler
+    .on('update', rebundle)
+    .on('log', gutil.log);
   return rebundle();
 }
 
