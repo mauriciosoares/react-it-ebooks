@@ -1,13 +1,19 @@
+// [CORE]
 var gulp = require('gulp');
 var gutil = require('gulp-util');
 
+// [PLUGINS]
 var browserify = require('browserify');
 var source = require('vinyl-source-stream');
 var babelify = require('babelify');
 var watchify = require('watchify');
+var browserSync = require('browser-sync');
 
+// [CONFIG]
 var config = require('../config.js').scripts;
 
+// watch is being used to determine if the task is running
+// in watch mode, or if's running only to compile the assets
 function scripts(watch) {
   var bundler, rebundle;
 
@@ -32,15 +38,16 @@ function scripts(watch) {
         gutil.log(err.toString());
       })
       .pipe(source(config.dest.src))
-      .pipe(gulp.dest(config.dest.path));
+      .pipe(gulp.dest(config.dest.path))
+      .pipe(browserSync.reload({stream: true}));
   };
 
   bundler
     .on('update', rebundle)
     .on('log', gutil.log);
-  return rebundle();
+
+  rebundle();
 }
 
-gulp.task('scripts:watch', function() {
-  return scripts(true);
-});
+gulp.task('scripts:develop', scripts.bind(null, true));
+gulp.task('scripts:build', scripts.bind(null, false));

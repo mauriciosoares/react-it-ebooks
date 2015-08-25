@@ -3,7 +3,7 @@ import Search from './Search'
 
 let App = React.createClass({
   render() {
-    return <div>teste2</div>
+    return <div>teste3rs2</div>
   }
 });
 
