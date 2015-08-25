@@ -15,43 +15,42 @@ var gulpif = require('gulp-if');
 // [CONFIG]
 var config = require('../config.js').scripts;
 
-// watch is being used to determine if the task is running
-// in watch mode, or if's running only to compile the assets
-function scripts(watch) {
-  var bundler, rebundle;
+// isDev is being used to determine if the task is running
+// in isDev mode, or if's running only to compile the assets
+function scripts(isDev) {
+  var bundler;
 
   bundler = browserify(config.src, {
     basedir: __dirname,
     debug: !(gutil.env.type === 'production'),
     cache: {},
     packageCache: {},
-    fullPaths: watch
+    fullPaths: isDev
   });
 
-  if(watch) {
+  if(isDev) {
     bundler = watchify(bundler);
   }
 
   bundler.transform(babelify);
 
-
-  rebundle = function() {
-    bundler.bundle()
-      .on('error', function(err) {
-        gutil.log(err.toString());
-      })
-      .pipe(source(config.dest.src))
-      .pipe(gulpif(!watch, buffer()))
-      .pipe(gulpif(!watch, uglify()))
-      .pipe(gulp.dest(config.dest.path))
-      .pipe(browserSync.reload({stream: true}));
-  };
-
   bundler
-    .on('update', rebundle)
+    .on('update', reBundle.bind(null, bundler, isDev))
     .on('log', gutil.log);
 
-  rebundle();
+  reBundle(bundler, isDev);
+}
+
+function reBundle(bundler, isDev) {
+  bundler.bundle()
+    .on('error', function(err) {
+      gutil.log(err.toString());
+    })
+    .pipe(source(config.dest.src))
+    .pipe(gulpif(!isDev, buffer()))
+    .pipe(gulpif(!isDev, uglify()))
+    .pipe(gulp.dest(config.dest.path))
+    .pipe(browserSync.reload({stream: true}));
 }
 
 gulp.task('scripts:develop', scripts.bind(null, true));
