@@ -18,9 +18,7 @@ var config = require('../config.js').scripts;
 // isDev is being used to determine if the task is running
 // in isDev mode, or if's running only to compile the assets
 function scripts(isDev) {
-  var bundler;
-
-  bundler = browserify(config.src, {
+  var bundler = browserify(config.src, {
     basedir: __dirname,
     debug: !(gutil.env.type === 'production'),
     cache: {},
@@ -28,13 +26,10 @@ function scripts(isDev) {
     fullPaths: isDev
   });
 
-  if(isDev) {
-    bundler = watchify(bundler);
-  }
-
-  bundler.transform(babelify);
+  if(isDev) bundler = watchify(bundler);
 
   bundler
+    .transform(babelify)
     .on('update', reBundle.bind(null, bundler, isDev))
     .on('log', gutil.log);
 
