@@ -42,6 +42,7 @@ function reBundle(bundler, isDev) {
       gutil.log(err.toString());
     })
     .pipe(source(config.dest.src))
+    // test gutil.noop() to remove gulpif
     .pipe(gulpif(!isDev, buffer()))
     .pipe(gulpif(!isDev, uglify()))
     .pipe(gulp.dest(config.dest.path))
