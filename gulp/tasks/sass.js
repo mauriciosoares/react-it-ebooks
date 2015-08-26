@@ -1,17 +1,20 @@
-// [CORE]
-var gulp = require('gulp');
+// // [CORE]
+// var gulp = require('gulp');
 
-// [PLUGINS]
+// // [PLUGINS]
 var sass = require('gulp-sass');
-var autoprefixer = require('gulp-autoprefixer');
+// var autoprefixer = require('gulp-autoprefixer');
 
-// [CONFIG]
-var config = require('../config.js').sass;
+// // [CONFIG]
+// var config = require('../config.js').sass;
 
-function sass(isDev) {
-  gulp.src(config.src)
-    .pipe(sass().on('error', sass.logError))
-    .pipe(gulp.dest(config.dest));
-}
+// function sassTask(isDev) {
+//   console.log('askdf');
+//   gulp.src(config.src)
+//     .pipe(sass().on('error', sass.logError))
+//     .pipe(gulp.dest(config.dest));
+// }
 
-gulp.task('sass:develop', sass.bind(null, false));
+// gulp.task('sass:develop', sassTask.bind(null, false));
+
+

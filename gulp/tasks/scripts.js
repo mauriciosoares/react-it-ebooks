@@ -17,7 +17,7 @@ var config = require('../config.js').scripts;
 
 // isDev is being used to determine if the task is running
 // in isDev mode, or if's running only to compile the assets
-function scripts(isDev) {
+function scriptsTask(isDev) {
   var bundler = browserify(config.src, {
     basedir: __dirname,
     debug: !(gutil.env.type === 'production'),
@@ -48,5 +48,5 @@ function reBundle(bundler, isDev) {
     .pipe(browserSync.reload({stream: true}));
 }
 
-gulp.task('scripts:develop', scripts.bind(null, true));
-gulp.task('scripts:build', scripts.bind(null, false));
+gulp.task('scripts:develop', scriptsTask.bind(null, true));
+gulp.task('scripts:build', scriptsTask.bind(null, false));
