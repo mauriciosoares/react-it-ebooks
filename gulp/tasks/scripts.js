@@ -10,6 +10,7 @@ var babelify = require('babelify');
 var watchify = require('watchify');
 var browserSync = require('browser-sync');
 var uglify = require('gulp-uglify');
+var eslint = require('gulp-eslint');
 var gulpif = require('gulp-if');
 
 // [CONFIG]
@@ -43,8 +44,11 @@ function reBundle(bundler, isDev) {
     })
     .pipe(source(config.dest.src))
     // test gutil.noop() to remove gulpif
-    .pipe(gulpif(!isDev, buffer()))
+    .pipe(buffer())
     .pipe(gulpif(!isDev, uglify()))
+    .pipe(eslint())
+    .pipe(eslint.format())
+    .pipe(eslint.failOnError())
     .pipe(gulp.dest(config.dest.path))
     .pipe(gulpif(isDev, browserSync.reload({stream: true})));
 }
