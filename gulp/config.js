@@ -1,6 +1,7 @@
 var PROJECT_ROOT = __dirname.replace(/gulp/, '');
 
 var config = {
+  PROJECT_ROOT: PROJECT_ROOT,
   scripts: {
     src: PROJECT_ROOT + 'app/index.js',
     dest: {

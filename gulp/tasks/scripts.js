@@ -45,7 +45,7 @@ function reBundle(bundler, isDev) {
     .pipe(gulpif(!isDev, buffer()))
     .pipe(gulpif(!isDev, uglify()))
     .pipe(gulp.dest(config.dest.path))
-    .pipe(browserSync.reload({stream: true}));
+    .pipe(gulpif(isDev, browserSync.reload({stream: true})));
 }
 
 gulp.task('scripts:develop', scriptsTask.bind(null, true));
