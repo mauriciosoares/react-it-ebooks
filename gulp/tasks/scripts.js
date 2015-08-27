@@ -21,7 +21,7 @@ var config = require('../config.js').scripts;
 function scriptsTask(isDev) {
   var bundler = browserify(config.src, {
     basedir: __dirname,
-    debug: !(gutil.env.type === 'production'),
+    debug: isDev,
     cache: {},
     packageCache: {},
     fullPaths: isDev
