@@ -46,9 +46,9 @@ function reBundle(bundler, isDev) {
     // test gutil.noop() to remove gulpif
     .pipe(buffer())
     .pipe(gulpif(!isDev, uglify()))
-    .pipe(eslint())
-    .pipe(eslint.format())
-    .pipe(eslint.failOnError())
+    // .pipe(eslint())
+    // .pipe(eslint.format())
+    // .pipe(eslint.failOnError())
     .pipe(gulp.dest(config.dest.path))
     .pipe(gulpif(isDev, browserSync.reload({stream: true})));
 }
