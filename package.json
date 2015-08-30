@@ -1,8 +1,8 @@
 {
-  "name": "react-it-ebooks",
+  "name": "mygulp",
   "version": "1.0.0",
-  "description": "",
-  "main": "gulpfile.js",
+  "description": "My Gulp configurations",
+  "main": "index.js",
   "devDependencies": {
     "babelify": "^6.2.0",
     "browser-sync": "^2.8.2",
@@ -12,9 +12,9 @@
     "gulp-eslint": "^1.0.0",
     "gulp-if": "^1.2.5",
     "gulp-sass": "^2.0.4",
+    "gulp-sourcemaps": "^1.5.2",
     "gulp-uglify": "^1.3.0",
     "gulp-util": "^3.0.6",
-    "react": "^0.13.3",
     "require-dir": "^0.3.0",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0",
@@ -25,12 +25,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mauriciosoares/react-it-ebooks.git"
+    "url": "git+https://github.com/mauriciosoares/mygulp.git"
   },
+  "keywords": [
+    "gulp"
+  ],
   "author": "Mauricio Soares",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/mauriciosoares/react-it-ebooks/issues"
+    "url": "https://github.com/mauriciosoares/mygulp/issues"
   },
-  "homepage": "https://github.com/mauriciosoares/react-it-ebooks#readme"
+  "homepage": "https://github.com/mauriciosoares/mygulp#readme"
 }
