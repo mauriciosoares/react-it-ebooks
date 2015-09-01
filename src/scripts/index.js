@@ -12,21 +12,20 @@ var App = React.createClass({
 
   },
 
-  updateAge() {
-    this.setState({
-      person: _.merge({data: this.state.person.data}, {loading: true})
-    });
-
-    personActions.updateAge();
-  },
-
   render() {
-    var data = this.state.person.data.map((item, index) => <div key={index}>{item.age}</div>);
+    var books = this.state.person.map((book) => {
+      return (
+        <div key={book.ID}>
+          {book.Title}<br />
+          {book.Description}<br />
+          <img src={book.Image} />
+        </div>
+      )
+    })
 
     return(
-      <div onClick={this.updateAge}>
-        {this.state.person.loading.toString()}
-        {data}
+      <div onClick={personActions.updateAge}>
+        {books}
       </div>
     )
   }

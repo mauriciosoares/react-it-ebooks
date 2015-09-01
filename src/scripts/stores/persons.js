@@ -1,27 +1,32 @@
-import Reflux from 'reflux'
-import personsActions from '../actions/persons.js'
+import Reflux from 'reflux';
+import personsActions from '../actions/persons.js';
+import axios from 'axios';
 
-var person = {
-  loading: false,
-  data: [{
-    name: 'Dr. Blaze',
-    age: 30,
-    avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/picard102/128.jpg'
-  }]
-};
+const API_URL = 'http://it-ebooks-api.info/v1/search/';
+
+var person = [];
 
 var store = Reflux.createStore({
   listenables: [personsActions],
 
   onUpdateAge() {
-    person.data[0].age = Math.floor(Math.random() * 100);
-    setTimeout(() => {
-      this.trigger({ person });
-    }.bind(this), 1000);
+    person[0].age = Math.floor(Math.random() * 100);
+    this.trigger({ person });
   },
 
   getInitialState() {
+    this.fetchApi();
     return { person };
+  },
+
+  fetchApi() {
+    axios.get(API_URL + 'web development').then(this.onDone.bind(this));
+  },
+
+  onDone(data) {
+    console.log('on done');
+    person = data.data.Books;
+    this.trigger({ person });
   }
 });
 
