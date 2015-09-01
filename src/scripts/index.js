@@ -7,19 +7,16 @@ import personActions from './actions/persons'
 var App = React.createClass({
   mixins: [Reflux.connect(personStore)],
 
-  getInitialState() {
-    return {
-      loading: false
-    }
-  },
-
   componentWillUpdate() {
-    console.log(this.state.person === personStore);
+
   },
 
   updateAge() {
     this.setState({
-      loading: true
+      person: {
+        data: this.state.person.data,
+        loading: true
+      }
     });
 
     personActions.updateAge();
@@ -30,7 +27,7 @@ var App = React.createClass({
 
     return(
       <div onClick={this.updateAge}>
-        {this.state.loading.toString()}
+        {this.state.person.loading.toString()}
         {data}
       </div>
     )
