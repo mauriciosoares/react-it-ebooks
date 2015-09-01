@@ -14,7 +14,7 @@ var App = React.createClass({
   },
 
   componentWillUpdate() {
-    console.log('test');
+    console.log(this.state.person === personStore);
   },
 
   updateAge() {
@@ -26,12 +26,12 @@ var App = React.createClass({
   },
 
   render() {
-    var p = this.state.person;
+    var data = this.state.person.data.map((item, index) => <div key={index}>{item.age}</div>);
 
     return(
       <div onClick={this.updateAge}>
         {this.state.loading.toString()}
-        {p.age}
+        {data}
       </div>
     )
   }
