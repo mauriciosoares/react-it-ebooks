@@ -4,6 +4,7 @@
   "description": "My Gulp configurations",
   "main": "index.js",
   "devDependencies": {
+    "axios": "^0.5.4",
     "babelify": "^6.2.0",
     "browser-sync": "^2.8.2",
     "browserify": "^11.0.1",
