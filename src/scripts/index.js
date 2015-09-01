@@ -2,6 +2,7 @@ import React from 'react'
 import Reflux from 'reflux'
 import personStore from './stores/persons'
 import personActions from './actions/persons'
+import _ from 'lodash'
 
 
 var App = React.createClass({
@@ -13,10 +14,7 @@ var App = React.createClass({
 
   updateAge() {
     this.setState({
-      person: {
-        data: this.state.person.data,
-        loading: true
-      }
+      person: _.merge({data: this.state.person.data}, {loading: true})
     });
 
     personActions.updateAge();
