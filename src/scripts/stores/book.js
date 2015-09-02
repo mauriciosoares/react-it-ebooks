@@ -4,19 +4,19 @@ import axios from 'axios';
 
 const API_URL = 'http://it-ebooks-api.info/v1/search/';
 
-var books = [];
+let _books = [];
 
-var store = Reflux.createStore({
+let store = Reflux.createStore({
   listenables: [bookActions],
 
   onUpdateAge() {
     // person[0].age = Math.floor(Math.random() * 100);
-    this.trigger({ books });
+    this.trigger({ _books });
   },
 
   getInitialState() {
     this.fetchApi();
-    return { books };
+    return { _books };
   },
 
   fetchApi() {
@@ -24,9 +24,8 @@ var store = Reflux.createStore({
   },
 
   onDone(data) {
-    console.log('on done');
-    books = data.data.Books;
-    this.trigger({ books });
+    _books = data.data.Books;
+    this.trigger({ _books });
   }
 });
 

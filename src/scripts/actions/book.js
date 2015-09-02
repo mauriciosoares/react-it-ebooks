@@ -1,6 +1,6 @@
 import Reflux from 'reflux'
 
-var actions = Reflux.createActions([
+let actions = Reflux.createActions([
   'updateAge'
 ]);
 
