@@ -10,17 +10,16 @@ let store = Reflux.createStore({
   listenables: [bookActions],
 
   onUpdateAge() {
-    // person[0].age = Math.floor(Math.random() * 100);
     this.trigger({ _books });
   },
 
   getInitialState() {
-    this.fetchApi();
+    this.fetchApi('web development');
     return { _books };
   },
 
-  fetchApi() {
-    axios.get(API_URL + 'web development').then(this.onDone.bind(this));
+  fetchApi(search) {
+    axios.get(API_URL + search).then(this.onDone.bind(this));
   },
 
   onDone(data) {

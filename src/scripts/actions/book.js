@@ -1,7 +1,7 @@
 import Reflux from 'reflux'
 
 let actions = Reflux.createActions([
-  'updateAge'
+  'fetchApi'
 ]);
 
 export default actions;
