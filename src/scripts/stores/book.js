@@ -1,22 +1,22 @@
 import Reflux from 'reflux';
-import personsActions from '../actions/persons.js';
+import bookActions from '../actions/book.js';
 import axios from 'axios';
 
 const API_URL = 'http://it-ebooks-api.info/v1/search/';
 
-var person = [];
+var books = [];
 
 var store = Reflux.createStore({
-  listenables: [personsActions],
+  listenables: [bookActions],
 
   onUpdateAge() {
-    person[0].age = Math.floor(Math.random() * 100);
-    this.trigger({ person });
+    // person[0].age = Math.floor(Math.random() * 100);
+    this.trigger({ books });
   },
 
   getInitialState() {
     this.fetchApi();
-    return { person };
+    return { books };
   },
 
   fetchApi() {
@@ -25,8 +25,8 @@ var store = Reflux.createStore({
 
   onDone(data) {
     console.log('on done');
-    person = data.data.Books;
-    this.trigger({ person });
+    books = data.data.Books;
+    this.trigger({ books });
   }
 });
 

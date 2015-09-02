@@ -1,19 +1,19 @@
 import React from 'react'
 import Reflux from 'reflux'
-import personStore from './stores/persons'
-import personActions from './actions/persons'
+import bookStore from './stores/book'
+import bookActions from './actions/book'
 import _ from 'lodash'
 
 
 var App = React.createClass({
-  mixins: [Reflux.connect(personStore)],
+  mixins: [Reflux.connect(bookStore)],
 
   componentWillUpdate() {
 
   },
 
   render() {
-    var books = this.state.person.map((book) => {
+    var books = this.state.books.map((book) => {
       return (
         <div key={book.ID}>
           {book.Title}<br />
@@ -24,7 +24,7 @@ var App = React.createClass({
     })
 
     return(
-      <div onClick={personActions.updateAge}>
+      <div onClick={bookActions.updateAge}>
         {books}
       </div>
     )
