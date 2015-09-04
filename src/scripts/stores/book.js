@@ -15,7 +15,7 @@ let store = Reflux.createStore({
 
   init() {
     console.log('inited');
-    debugger;
+    console.log(BookActions.load.completed);
     this.listenTo(BookActions.load.completed, this.loadCompleted)
   },
 

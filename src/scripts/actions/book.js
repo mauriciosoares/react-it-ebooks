@@ -17,6 +17,7 @@ let Actions = Reflux.createActions({
 
 // actions.init.listenAndPromise(axios.get('http://it-ebooks-api.info/v1/search/web development'))
 
+window.a = axios;
 
 Actions.load.listen(function() {
   console.log('teste');
