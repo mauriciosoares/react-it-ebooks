@@ -3,7 +3,7 @@ import axios from 'axios';
 
 let Actions = Reflux.createActions({
   load: {
-    children: ['completed']
+    asyncResult: true
   }
 });
 
