@@ -14,13 +14,13 @@ let store = Reflux.createStore({
   // },
 
   init() {
-    console.log('inited');
-    console.log(BookActions.load.completed);
+    BookActions.load('web development');
     this.listenTo(BookActions.load.completed, this.loadCompleted)
   },
 
   loadCompleted(data) {
-    console.log(data);
+    _books = data.data.Books;
+    this.trigger({ _books });
   },
 
   onUpdateAge() {
